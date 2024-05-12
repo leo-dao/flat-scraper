@@ -28,15 +28,23 @@ def getPrice(listing):
 
     return price
 
-def getListingInfo(browser):
-    listing_html = browser.html
-    listing_soup = BeautifulSoup(listing_html, 'html.parser')
+def getListingInfo(browser, html):
+    listing_soup = BeautifulSoup(html, 'html.parser')
 
-    button = browser.find_by_text('See more')
-    print(button.first)
+    # Click on "See More" button to get full description
+    class_name = "x1i10hfl xjbqb8w x1ejq31n xd10rxx x1sy0etr x17r0tee x972fbf xcfux6l x1qhh985 xm0m39n x9f619 x1ypdohk xt0psk2 xe8uvvx xdj266r x11i5rnm xat24cr x1mh8g0r xexx8yu x4uap5 x18d9i69 xkhd6sd x16tdsg8 x1hl2dhg xggy1nq x1o1ewxj x3x9cwd x1e5q0jg x13rtm0m x1n2onr6 x87ps6o x1lku1pv x1a2a7pz"
+    selector = f'div[class="{class_name}"][role="button"]:not([aria-label])'
+
+    button = browser.find_by_css(selector).first
+
+    print(button.outer_html)
+
     if button:
-        button.first.click()
-    time.sleep(1)
+
+        button.click()
+
+        description = browser.find_by_css('span[class="x193iq5w xeuugli x13faqbe x1vvkbs xlh3980 xvmahel x1n0sxbx x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x x4zkp8e x3x7a5m x6prxxf xvq8zen xo1l8bm xzsf02u"]')[1].text
+        print(description)
 
 
 def __main__():
@@ -48,7 +56,7 @@ def __main__():
     goto_page(browser, base_url + '/marketplace/montreal/search/?query=2%20bedroom%20apartment%20for%20rent')
 
     # Scroll down to load more listings
-    scroll_down(browser)
+    #scroll_down(browser)
 
     # Parse html
     html = browser.html
@@ -71,14 +79,14 @@ def __main__():
         max_price = 2000
         min_price = 1000
         if price > max_price or price < min_price:
-            return
+            continue
         
         # Get the link of the listing
         link = listing.get('href')
         
         goto_page(browser, base_url + link)
 
-        listing_info = getListingInfo( browser)
+        listing_info = getListingInfo( browser, html)
 
         # Append the listing to the list
         listings_list.append(listing_info)
