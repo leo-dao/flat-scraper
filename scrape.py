@@ -79,8 +79,6 @@ def get_listing_info(browser):
     return info
 
 def scrape_listings():
-
-
     browser = Browser('chrome')
     
     goto_page(browser, BASE_URL + '/marketplace/montreal/search/?query=2%20bedroom%20apartment%20for%20rent')
