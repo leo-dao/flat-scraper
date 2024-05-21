@@ -1,19 +1,21 @@
 import React from 'react';
 import './App.css';
 import styled from 'styled-components';
-
+import Form from './Components/Form.tsx';
 
 const Background = styled.div`
   background-color: #f0f0f0;
   height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const App: React.FC = () => {
   return (
     <Background>
       <h1>App</h1>
+      <Form />
     </Background>
   );
 }
