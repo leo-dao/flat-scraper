@@ -1,20 +1,31 @@
 import React from 'react';
+import styled from 'styled-components';
 
 interface Props {
-    name: string;
-    options: { label: string; value: string; }[];
     value: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Radio: React.FC<Props> = ({ name, options, value, onChange }) => {
+const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+`;
+
+const petOptions = [
+    { value: 'No pets allowed', label: 'No pets allowed' },
+    { value: 'Dogs allowed', label: 'Dogs allowed' },
+    { value: 'Cats allowed', label: 'Cats allowed' },
+];
+
+const Radio: React.FC<Props> = ({ value, onChange }) => {
     return (
-        <div>
-            {options.map(option => (
+        <Container>
+            {petOptions.map(option => (
                 <label key={option.value}>
                     <input
                         type="radio"
-                        name={name}
+                        name='Pets'
                         value={option.value}
                         checked={value === option.value}
                         onChange={onChange}
@@ -22,7 +33,7 @@ const Radio: React.FC<Props> = ({ name, options, value, onChange }) => {
                     {option.label}
                 </label>
             ))}
-        </div>
+        </Container>
     );
 };
 
