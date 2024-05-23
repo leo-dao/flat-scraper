@@ -1,20 +1,24 @@
 import React from 'react';
+import DatePicker from 'react-date-picker';
+import { Value } from './type';
 
-interface Props {
-    name: string;
-    value: string;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+interface DateProps {
+    selectedDate: Value;
+    onChange: (date: Value) => void;
 }
 
-const Date: React.FC<Props> = ({ name, value, onChange }) => {
+const DateInput: React.FC<DateProps> = ({ selectedDate, onChange }) => {
+
+    const handleDateChange = (date: Value) => {
+        onChange(date);
+    };
+
     return (
-        <input
-            type="date"
-            name={name}
-            value={value}
-            onChange={onChange}
+        <DatePicker
+            value={selectedDate}
+            onChange={handleDateChange}
         />
     );
 };
 
-export default Date;
+export default DateInput;

@@ -1,3 +1,5 @@
-type PetPolicy = "Cats allowed" | "Pets allowed" | "No pets allowed";
+export type PetPolicy = "Cats allowed" | "Pets allowed" | "No pets allowed";
 
-export default PetPolicy;
+type ValuePiece = Date | null;
+
+export type Value = ValuePiece | [ValuePiece, ValuePiece];
