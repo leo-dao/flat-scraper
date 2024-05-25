@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import styled from 'styled-components';
-import Form from './Components/Form.tsx';
+import Form from './Components/Form';
 
 const Background = styled.div`
   background-color: #f0f0f0;
