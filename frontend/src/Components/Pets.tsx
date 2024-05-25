@@ -18,7 +18,7 @@ const petOptions = [
     { value: 'Cats allowed', label: 'Cats allowed' },
 ];
 
-const Radio: React.FC<Props> = ({ value, onChange }) => {
+const Pets: React.FC<Props> = ({ value, onChange }) => {
     return (
         <Container>
             {petOptions.map(option => (
@@ -37,4 +37,4 @@ const Radio: React.FC<Props> = ({ value, onChange }) => {
     );
 };
 
-export default Radio;
+export default Pets;

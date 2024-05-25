@@ -14,7 +14,7 @@ const Background = styled.div`
 const App: React.FC = () => {
   return (
     <Background>
-      <h1>App</h1>
+      <h1>Flat Scraper</h1>
       <Form />
     </Background>
   );

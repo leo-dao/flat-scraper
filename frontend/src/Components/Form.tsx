@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Radio from './Radio';
+import Pets from './Pets';
 import Date from './Date';
 import Price from './Price';
 import Location from './Location';
 import { PetPolicy } from './type';
+import axios from 'axios';
 
 const StyledForm = styled.form`
     display: flex;
@@ -12,7 +13,7 @@ const StyledForm = styled.form`
     gap: 10px;
     margin: 20px;
     padding: 20px;
-    border: 1px solid black;
+    border: 0.5px solid black;
     border-radius: 5px;
     background-color: white;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
@@ -32,7 +33,7 @@ const Button = styled.button`
 
 const Form: React.FC = () => {
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         const data = {
             location,
@@ -41,7 +42,13 @@ const Form: React.FC = () => {
             pets,
             selectedDate
         };
-        console.log(data);
+
+        try {
+            const response = await axios.post('http://localhost:8000/process-data/', data);
+            console.log(response.data);
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     const [location, setLocation] = useState<string>('');
@@ -79,7 +86,7 @@ const Form: React.FC = () => {
                 onMinPriceChange={onMinPriceChange} 
                 onMaxPriceChange={onMaxPriceChange}/>
             <Date selectedDate={selectedDate} onChange={handleDateChange}/>
-            <Radio value={pets} onChange={onPetsChange}/>
+            <Pets value={pets} onChange={onPetsChange}/>
             <Button type="submit">Submit</Button>
         </StyledForm>
     );
