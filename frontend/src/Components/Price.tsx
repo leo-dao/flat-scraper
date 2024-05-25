@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 interface PriceProps {
-    minPrice?: number;
-    maxPrice?: number;
+    minPrice: number | null;
+    maxPrice: number | null;
     onMinPriceChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onMaxPriceChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
@@ -27,14 +27,14 @@ const Price: React.FC<PriceProps> = ({minPrice, maxPrice, onMaxPriceChange, onMi
             <PriceInput
                 type="number"
                 placeholder="Min price"
-                value={minPrice}
+                value={minPrice !== null ? minPrice : ''}
                 onChange={onMinPriceChange}
             />
             To:
             <PriceInput
                 type="number"
                 placeholder="Max price"
-                value={maxPrice}
+                value={maxPrice !== null ? maxPrice : ''}
                 onChange={onMaxPriceChange}
             />
         </Container>
