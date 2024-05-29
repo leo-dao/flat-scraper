@@ -118,6 +118,3 @@ def scrape_listings():
         print (listing_info)
 
     browser.quit()
-
-if __name__ == '__main__':
-    scrape_listings()

@@ -1,5 +1,6 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from DataProcessor.utils.scrape import scrape_listings
 
 @api_view(['POST'])
 def process_data(request):
@@ -13,6 +14,7 @@ def process_data(request):
             pets,
             selectedDate
         }; """
-
+    
+    scrape_listings(data)
    
     return Response({'result': 'success'})
