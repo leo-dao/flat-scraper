@@ -4,6 +4,7 @@ import Pets from './Pets';
 import Date from './Date';
 import Price from './Price';
 import Location from './Location';
+import Mail from './Mail';
 import { PetPolicy } from './type';
 import axios from 'axios';
 
@@ -76,6 +77,11 @@ const Form: React.FC = () => {
         setSelectedDate(date);
     };
 
+    const [email, setEmail] = useState('');
+    const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setEmail(e.target.value);
+    };
+
 
     return (
         <StyledForm onSubmit={handleSubmit}>
@@ -87,6 +93,7 @@ const Form: React.FC = () => {
                 onMaxPriceChange={onMaxPriceChange}/>
             <Date selectedDate={selectedDate} onChange={handleDateChange}/>
             <Pets value={pets} onChange={onPetsChange}/>
+            <Mail email={email} handleEmailChange={handleEmailChange}/>
             <Button type="submit">Submit</Button>
         </StyledForm>
     );

@@ -13,11 +13,6 @@ const Select = styled.select`
     border: 2px solid #ccc;
     font-size: 16px;
     cursor: pointer;
-    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-
-    &:hover {
-        border-color: #555;
-    }
 `;
 
 const months = [
