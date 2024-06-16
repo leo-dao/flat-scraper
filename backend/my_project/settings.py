@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_q',
     'rest_framework',
     'corsheaders',
     'DataProcessor'
@@ -77,6 +78,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'my_project.wsgi.application'
 
+Q_CLUSTER = {
+    'name': 'myproject',
+    'workers': 4,
+    'recycle': 500,
+    'timeout': 60,
+    'scheduler': 'django_q.schedulers.Schedule',
+    'redis': {
+        'host': 'localhost',
+        'port': 6379,
+        'db': 0,
+    }
+}
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
@@ -86,11 +100,14 @@ CORS_ALLOWED_ORIGINS = [
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'fb_flatdb',
+        'USER': 'admin',
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': 'localhost', 
+        'PORT': '5432',      
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -139,5 +156,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'fake@email.com'
+EMAIL_HOST_USER = 'leotomdao@gmail.com'
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')

@@ -1,3 +1,6 @@
 venv/
-# hide pycache in all directories
 __pycache__
+*.pyc
+.env
+migrations/
+__init__.py
